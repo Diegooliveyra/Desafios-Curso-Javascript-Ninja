@@ -1,5 +1,5 @@
 // Declarar uma variável qualquer, que receba um objeto vazio.
-var mayvar = {}
+var objeto = {}
 
 /*
 Declarar uma variável `pessoa`, que receba suas informações pessoais.
@@ -43,8 +43,9 @@ valor dessa propriedade a quantidade passada por parâmetro;
 - Ele deverá modificar o valor da propriedade `andando` para o valor
 booleano que representa "verdadeiro";
 */
-pessoa.andar = function () {
-    pessoa.metrosCaminhados = 100, pessoa.caminhouQuantosMetros += pessoa.metrosCaminhados, pessoa.andando = true;
+pessoa.andar = function (metros) {
+    pessoa.caminhouQuantosMetros += metros;
+    pessoa.andando = true;
 }
 
 
@@ -93,77 +94,64 @@ Agora vamos brincar um pouco com o objeto criado:
 Qual o nome completo da pessoa? (Use a instrução para responder e comentários
 inline ao lado da instrução para mostrar qual foi a resposta retornada)
 */
-pessoa.nome //'Diego'
+pessoa.nomeCompleto() //'Ola! Meu nome é Diego Oliveira!'
 
 /*
 Qual a idade da pessoa? (Use a instrução para responder e comentários
 inline ao lado da instrução para mostrar qual foi a resposta retornada)
 */
-pessoa.idade // 33
+pessoa.mostrarIdade() // "Ola, eu tenho 33 anos!"
 
 /*
 Qual o peso da pessoa? (Use a instrução para responder e comentários
 inline ao lado da instrução para mostrar qual foi a resposta retornada)
 */
-pessoa.peso // 65
+pessoa.mostrarPeso() // "Eu peso 65Kg"
 
 /*
 Qual a altura da pessoa? (Use a instrução para responder e comentários
 inline ao lado da instrução para mostrar qual foi a resposta retornada)
 */
-pessoa.altura // 1.7
+pessoa.mostrarAltura() // "Minha altura é 1.7m.""
 
 /*
 Faça a `pessoa` fazer 3 aniversários.
 */
-pessoa.fazerAniversario = function () {
-    pessoa.idade = pessoa.idade + 3;
-}
-
-
+pessoa.fazerAniversario();
+pessoa.fazerAniversario();
+pessoa.fazerAniversario();
 /*
 Quantos anos a `pessoa` tem agora? (Use a instrução para responder e
 comentários inline ao lado da instrução para mostrar qual foi a resposta
 retornada)
 */
-pessoa.idade // 36
+pessoa.idade() // "Olá, eu tenho 36 anos"
 
 /*
 Agora, faça a `pessoa` caminhar alguns metros, invocando o método `andar` 3x,
 com metragens diferentes passadas por parâmetro.
 */
-pessoa.andar = function () {
-    pessoa.metrosCaminhados = pessoa.metrosCaminhados + 100;
-}
+pessoa.andar(100);
+pessoa.andar(150);
+pessoa.andar(30);
 
-pessoa.andar()
-
-pessoa.andar = function () {
-    pessoa.metrosCaminhados = pessoa.metrosCaminhados + 150;
-}
-
-pessoa.andar()
-
-pessoa.andar = function () {
-    pessoa.metrosCaminhados = pessoa.metrosCaminhados + 30;
-}
 /*
 A pessoa ainda está andando? (Use a instrução para responder e comentários
 inline ao lado da instrução para mostrar qual foi a resposta retornada)
 */
-pessoa.andando // false
+pessoa.andando // true
 
 /*
 Se a pessoa ainda está andando, faça-a parar.
 */
 
+pessoa.parar();
 
 /*
 E agora: a pessoa ainda está andando? (Use uma instrução para responder e
 comentários inline ao lado da instrução para mostrar a resposta retornada)
 */
 pessoa.andando // false
-
 /*
 Quantos metros a pessoa andou? (Use uma instrução para responder e comentários
 inline ao lado da instrução para mostrar a resposta retornada)
@@ -188,23 +176,21 @@ método), que será concatenada com a frase de retorno, mostrando a resposta
 correta, de acordo com os dados inseridos no objeto.
 */
 pessoa.apresentacao = function () {
+    var genero = " o ";
+    var date = " anos ";
+    var distancia = " metros ";
+
     if (pessoa.sexo == "feminino") {
         var genero = " a "
-    } else {
-        var genero = " o "
     }
     if (pessoa.idade == 1) {
         var date = " ano, "
-    } else {
-        var date = " anos, "
     }
     if (pessoa.metrosCaminhados == 1) {
-        var metro = " metro"
-    } else {
-        var metro = " metros "
+        var distancia = " metro"
     }
 
-    return "Olá, eu sou " + genero + pessoa.nome + " " + pessoa.sobrenome + ", tenho " + pessoa.idade + date + pessoa.altura + " m, meu peso é " + pessoa.peso + " e só hoje eu caminhei " + pessoa.metrosCaminhados + metro + "!";
+    return "Olá, eu sou " + genero + pessoa.nome + " " + pessoa.sobrenome + ", tenho " + pessoa.idade + date + pessoa.altura + " m, meu peso é " + pessoa.peso + " e só hoje eu caminhei " + pessoa.metrosCaminhados + distancia + "!";
 }
 
 // Agora, apresente-se ;)
