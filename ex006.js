@@ -4,9 +4,9 @@ para começar o desafio.
 Declare uma variável chamada `championship` que receberá o nome do campeonato,
 e imprima o nome desse campeonato no console.
 */
-var championship = 'Libertadores';
+var championship = "Libertadores";
 
-console.log(championship)
+console.log(championship);
 
 /*
 Declare uma variável chamada `teams`, que receberá um array com 5 elementos.
@@ -14,9 +14,15 @@ Os elementos serão nomes de times do campeonato escolhido, e os nomes devem
 estar na ordem em que eles aparecem na tabela no momento da solução desse
 desafio.
 */
-var teams = ['corinthinas', 'Palmeiras', 'São Paulo', 'Boca Junior', 'River Plate']
+var teams = [
+  "corinthinas",
+  "Palmeiras",
+  "São Paulo",
+  "Boca Junior",
+  "River Plate",
+];
 
-console.log('Times que estão participando do campeonato:', teams);
+console.log("Times que estão participando do campeonato:", teams);
 
 /*
 Crie uma função chamada `showTeamPosition` com as seguintes características:
@@ -35,27 +41,27 @@ Crie uma função chamada `showTeamPosition` com as seguintes características:
     "Não temos a informação do time que está nessa posição."
 */
 function showTeamPosition(position) {
-    return (position > 5 || position === undefined)
-        ? "Não temos a informação do time que está nessa posição."
-        : 'O time que está em ' + position + 'º lugar é o ' + teams[--position] + '.';
+  return position > 5 || position < 1
+    ? "Não temos a informação do time que está nessa posição."
+    : "O time que está em " + position + "º lugar é o " + teams[--position] + ".";
 }
 
 /*
 Escolha 4 times do campeonato selecionado e mostre a posição dele, usando a
 função acima. Entre esses 4, adicione 1 que não esteja entre os 5 primeiros.
 */
-console.log(showTeamPosition(1)) //'O time que está em 1º lugar é o corinthinas.'
-console.log(showTeamPosition(2)) //'O time que está em 2º lugar é o Palmeiras.'
-console.log(showTeamPosition(3)) //'O time que está em 3º lugar é o São Paulo.'
+console.log(showTeamPosition(1)); //'O time que está em 1º lugar é o corinthinas.'
+console.log(showTeamPosition(2)); //'O time que está em 2º lugar é o Palmeiras.'
+console.log(showTeamPosition(3)); //'O time que está em 3º lugar é o São Paulo.'
+console.log(showTeamPosition(10)); //'Não temos a informação do time que está nessa posição.'
 /*
 Mostre os números de 20 a 30 no console (inclusive o 30), usando a estrutura de
 repetição "while".
 */
 var counter = 20;
 
-while(counter <= 30) {
-    console.log(counter)
-    counter++;
+while (counter <= 30) {
+  console.log(counter++);
 }
 
 /*
@@ -70,20 +76,40 @@ Crie uma função chamada `convertToHex`, com as seguintes características:
     a frase:
     "Não temos o equivalente hexadecimal para [COR]."
 */
-function convertToHex(cor) {
-    switch(cor) {
-        case "red":
-            console.log("O hexadecimal para a cor "+ cor +" é #FF0000.");
-            break;
-        case "blue":
-            console.log("O hexadecimal para a cor "+ cor +" é #0000FF.");
-            break;
-        case "green":
-            console.log("O hexadecimal para a cor "+ cor +" é #FF0000.");
-    }
+function convertToHex(color) { 
+    
+    var hexa;
+
+  switch (color) {
+    case "red":
+      hexa = "#FF0000";
+      break;
+    case "blue":
+        hexa = "#0000FF";
+      break;
+    case "green":
+        hexa = "#00FF00";
+      break;
+    case "black":
+        hexa = "#000000";
+      break;
+    case "white":
+        hexa = "#FFFFFF";
+      break;
+    default:
+      return console.log("Não temos o equivalente hexadecimal para cor " + color + ".");
+  }
+  return console.log("O hexadecimal para a cor " + color + " é " + hexa + ".");
 }
 
 /*
 Tente mostrar o hexadecimal de 8 cores diferentes usando a função criada acima.
 */
-// ?
+convertToHex("red"); // O hexadecimal para a cor red é #FF0000.
+convertToHex("green"); // O hexadecimal para a cor green é #00FF00.
+convertToHex("blue"); // O hexadecimal para a cor blue é #0000FF.
+convertToHex("white"); // O hexadecimal para a cor white é #FFFFFF.
+convertToHex("black"); // O hexadecimal para a cor black é #000000.
+convertToHex("purple"); // Não temos o equivalente hexadecimal para cor purple.
+convertToHex("oragen"); // Não temos o equivalente hexadecimal para cor oragen.
+convertToHex("gray"); // Não temos o equivalente hexadecimal para cor gray.
