@@ -48,7 +48,7 @@
   }
   myFunction3();
 
-  /*
+  /*´p
     No desafio anterior criamos uma calculadora, usando uma estrutura funcional.
     Agora vamos criar uma outra calculadora, usando uma outra abordagem :D
     - Crie uma função `calculator` que recebe dois valores (números)
@@ -88,7 +88,7 @@
       return num1 + num2;
     })
   );
-
+8
   /*
   Agora declare outra variáveis chamadas `subtraction`, `multiplication`,
   `division` e `mod`, e atribua à elas `calculator`, passando números
