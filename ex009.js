@@ -90,10 +90,10 @@
   );
 
   /*
-Agora declare outra variáveis chamadas `subtraction`, `multiplication`,
-`division` e `mod`, e atribua à elas `calculator`, passando números
-diferentes para cada chamada.
-*/
+  Agora declare outra variáveis chamadas `subtraction`, `multiplication`,
+  `division` e `mod`, e atribua à elas `calculator`, passando números
+  diferentes para cada chamada.
+  */
   var subtraction = calculator(5, 5);
   var multiplication = calculator(5, 5);
   var division = calculator(5, 5);
