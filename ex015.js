@@ -29,14 +29,14 @@
     this.getFullName = function getFullName(name, lastName) {
       return this.name + " " + this.lastName;
     }
-    this;getAge = function getAge (age){
+    this.getAge = function getAge (){
       return this.age;
     }
     this.addAge = function addAge(){
-      return this.age += arguments[0];
+      this.age += arguments[0];
+      return this
     }
   }
-    console.log(Person("Diego", "Oliveira", 32))
     /*
     Crie 3 novos objetos usando o construtor acima. Os objetos serão novas
     pessoas. As variáveis deverão ser o primeiro nome da pessoa. Passe os
@@ -46,26 +46,37 @@
     console.log('Novas pessoas criadas à partir de Person:');
 
     var Diego = new Person('Diego','Oliveira',32)
+    var Paulo = new Person('Paulo', 'Silva', 25)
+    var Luana = new Person('Luana', 'Moreira', 28)
 
+    console.log(Diego)
+    console.log(Paulo)
+    console.log(Luana)
     /*
     Mostre no console o nome completo de cada pessoa.
     */
     console.log('\nNomes das pessoas:');
-    console.log(Diego)
+    console.log(Diego.getFullName() )
+    console.log(Paulo.getFullName())
+    console.log(Luana.getFullName())
+
 
     /*
     Mostre no console as idades de cada pessoa, com a frase:
     - "[NOME COMPLETO] tem [IDADE] anos."
     */
     console.log('\nIdade das pessoas:');
-    // ?
-
+    console.log(Diego.getFullName() +" tem " + Diego.getAge() + " anos.")
+    console.log(Paulo.getFullName() +" tem " + Paulo.getAge() + " anos.")
+    console.log(Luana.getFullName() +" tem " + Luana.getAge() + " anos.")
     /*
     Adicione alguns anos à cada pessoa, e mostre no console a nova idade de
     cada um. A frase deverá ser no formato:
     - "[NOME COMPLETO] agora tem [NOVA IDADE] anos."
     */
     console.log('\nNova idade das pessoas:');
-    // ?
+    console.log(Diego.getFullName() +" tem " + Diego.addAge(2).getAge() + " anos.")
+    console.log(Paulo.getFullName() +" tem " + Paulo.addAge(2).getAge() + " anos.")
+    console.log(Luana.getFullName() +" tem " + Luana.addAge(2).getAge() + " anos.")
 
   })()
