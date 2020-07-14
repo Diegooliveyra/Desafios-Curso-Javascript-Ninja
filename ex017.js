@@ -92,12 +92,22 @@ Use um console.log para cada mês, usando a frase:
       novembro: "11",
       dezembro: "12",
     };
-    return meses[mes]
+    return meses[mes];
   }
 
-  console.log("O mês de março é representado pelo número " +getMonthNumber('março')+".")
-  console.log("O mês de setembro é representado pelo número " +getMonthNumber('setembro')+".")
-  console.log("O mês de dezembro é representado pelo número " +getMonthNumber('dezembro')+".")
+  console.log(
+    "O mês de março é representado pelo número " + getMonthNumber("março") + "."
+  );
+  console.log(
+    "O mês de setembro é representado pelo número " +
+      getMonthNumber("setembro") +
+      "."
+  );
+  console.log(
+    "O mês de dezembro é representado pelo número " +
+      getMonthNumber("dezembro") +
+      "."
+  );
   /*
 Agora, declare uma variável chamada `regexDate` que irá receber a expressão
 regular que irá fazer o match com as datas. Crie grupos de captura para o
@@ -107,7 +117,8 @@ Com o que vimos até agora, você consegue fazer :D
 Mostre a regex no console.
 */
   console.log("\nRegex que vai fazer o match com as datas do texto:");
-  // ?
+  var regexDate = /(\d\d) de (junho|Julho) de (\d\d\d\d)/;
+  console.log(regexDate);
 
   /*
 Agora crie a função que irá fazer o replace dos dados. A função será chamada
@@ -117,5 +128,8 @@ Após criar a função, faça o replace das datas no texto, mostrando no
 console o resultado.
 */
   console.log("\nReplace de datas:");
-  // ?
+  function replaceDate(regex, dia, mes, ano) {
+    return dia + "/" + getMonthNumber(mes) + "/" + ano;
+  }
+  console.log(text.replace(regexDate, replaceDate));
 })();
