@@ -1,4 +1,4 @@
-(function (window,document) {
+(function (window, document) {
   "use strict";
   /*
     1. Envolva todo o conteúdo desse desafio em uma IIFE.
@@ -77,21 +77,20 @@
     Caso contrário, mostre um alerta com a mensagem:
         - "Não enviado."
     */
-  $button.addEventListener( "click",
-    function (evento) {
-        evento.preventDefault
-      if (!$inputUsername.value) 
+  $button.addEventListener("click",
+    function (event) {
+      event.preventDefault()
+      if (!$inputUsername.value)
         return alert("Preencha o nome do usuário!");
       if (!$inputEmail.value)
-         return alert("Preencha o e-mail!");
-      if(!$message.value)
-         return alert('Preencha a mensagem!')
-      if(!isValidEmail($inputEmail))
-         return alert('Entre com um e-mail válido!')
-      if(confirm('Tem certeza que deseja enviar o formulário?'))
-        return alert("Enviado com sucesso!") 
-        
+        return alert("Preencha o e-mail!");
+      if (!isValidEmail($inputEmail.value))
+        return alert('Entre com um e-mail válido!') 
+      if (!$message.value)
+        return alert('Preencha a mensagem!')
+      if (!confirm('Tem certeza que deseja enviar o formulário?'))
         return alert("Não enviado.!")
+      return alert("Enviado com sucesso!")
     },
     false
   );
@@ -120,5 +119,10 @@
         - "rita-marica@titica.a.b"
         - "agua_@evida.br.com"
     */
-  // ?
-})(window,document);
+
+  function isValidEmail(email) {
+    return /^[\w+.]+@\w+\.\w{2,}(?:\.\w{2})?$/.test(email)
+  }
+
+
+})(window, document);
