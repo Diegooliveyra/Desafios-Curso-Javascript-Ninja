@@ -1,4 +1,5 @@
 (function(){
+    "use strict";
 /*
 O desafio de hoje será um pequeno projeto: um cronômetro!
 As regras para criação do cronômetro são as seguintes:
@@ -14,5 +15,9 @@ Utilize o atributo data-js para nomear o campo e os botões. Você pode
 usar o nome que achar melhor, desde que ele seja semântico, ou seja, o nome
 dado ao elemento HTML deve definir o que o elemento é ou o que ele faz.
 */
-// ?
+
+    var start = document.querySelector("#start");
+    var stop = document.querySelector("#stop");
+    var reset = document.querySelector("#reset");
+    console.log(start.value)
 })()
