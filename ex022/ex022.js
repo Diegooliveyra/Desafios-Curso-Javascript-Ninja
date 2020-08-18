@@ -1,4 +1,13 @@
- /*
+(function(){
+
+    function constr (name, lastName) {
+        this.fullName = name + ' ' + lastName;
+    }
+
+    var diego = new constr('diego', 'oliveira')
+    console.log(diego.fullName)
+
+/*
   Crie dois objetos, que serão duas pessoas. Cada um deve ter as propriedades
   `name` e `lastName`, preenchidos com o nome e sobrenome da pessoa.
   */
@@ -68,3 +77,5 @@
  */
  console.log( '\nSomar números entrados pelo usuário:' );
  // ?
+
+})()
