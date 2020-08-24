@@ -1,34 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Calculadora</title>
 </head>
+
 <body>
 
   <div class="content">
     <form action="">
-      <input type="text" value="0">
-  <button>1</button>
-  <button>2</button>
-  <button>3</button>
-  <button>4</button>
-  <button>5</button>
-  <button>6</button>
-  <button>7</button>
-  <button>8</button>
-  <button>9</button>
-  <button>0</button>
-  <button>+</button>
-  <button>-</button>
-  <button>*</button>
-  <button>/</button>
-  <button>=</button>
-  <button>CE</button>
+      <input type="text" value="0" readonly data-js="visor"> 
+
+      <div class="buttonsNumbers">
+        <button data-js="buttonNumber" data-id="buttonNumber1">1</button>
+        <button data-js="buttonNumber" data-id="buttonNumber2">2</button>
+        <button data-js="buttonNumber" data-id="buttonNumber3">3</button>
+        <button data-js="buttonNumber" data-id="buttonNumber4">4</button>
+        <button data-js="buttonNumber" data-id="buttonNumber5">5</button>
+        <button data-js="buttonNumber" data-id="buttonNumber6">6</button>
+        <button data-js="buttonNumber" data-id="buttonNumber7">7</button>
+        <button data-js="buttonNumber" data-id="buttonNumber8">8</button>
+        <button data-js="buttonNumber" data-id="buttonNumber9">9</button>
+        <button data-js="buttonNumber" data-id="buttonNumber0">0</button>
+      </div>
+
+      <div class="operations">
+        <button data-js="buttonOperations" data-id="buttonOperationsPlus">+</button>
+        <button data-js="buttonOperations" data-id="buttonOperationsMinus">-</button>
+        <button data-js="buttonOperations" data-id="buttonOperationsMult">*</button>
+        <button data-js="buttonOperations" data-id="buttonOperationsDivison">/</button>
+        <button data-js="buttonOperations" data-id="buttonOperationsEqual">=</button>
+        <button data-js="buttonOperations" data-id="buttonOperationsCE">CE</button>
+      </div>
 
     </form>
   </div>
 
 </body>
+
 </html>
