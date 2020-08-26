@@ -1,6 +1,6 @@
-(function(win, doc){
-    'use stricts'
-    /*
+(function (win, doc) {
+  "use stricts";
+  /*
 Vamos desenvolver mais um projeto. A ideia é fazer uma mini-calculadora.
 As regras são:
 - Deve ter somente 1 input, mas não deve ser possível entrar dados nesse input
@@ -24,8 +24,15 @@ input;
 - Ao pressionar o botão "CE", o input deve ficar zerado.
 */
 
-var $visor = doc.querySelector('[data-js="visor"]')
-var $buttonsNumber = doc.querySelectorAll('[data-js="buttonNumber"]')
-console.log($buttonsNumber)
+  var $visor = doc.querySelector('[data-js="visor"]');
+  var $buttonsNumber = doc.querySelectorAll('[data-js="buttonNumber"]');
 
+  Array.prototype.forEach.call($buttonsNumber, function (button) {
+    button.addEventListener("click", handleClickNumber, false);
+  });
+
+  function handleClickNumber(event) {
+    event.preventDefault()
+    $visor.value += this.value
+  }
 })(window, document);
