@@ -26,13 +26,34 @@ input;
 
   var $visor = doc.querySelector('[data-js="visor"]');
   var $buttonsNumber = doc.querySelectorAll('[data-js="buttonNumber"]');
+  var $buttonCe = doc.querySelector('[data-js="button-CE"]');
+  var $operationsButtons = doc.querySelectorAll('[data-js="buttonOperations"]')
 
   Array.prototype.forEach.call($buttonsNumber, function (button) {
     button.addEventListener("click", handleClickNumber, false);
   });
+  Array.prototype.forEach.call($operationsButtons, function(button){
+    button.addEventListener("click", handleClickOperations, false);
+  })
+  
+  $buttonCe.addEventListener("click", handleClickCE, false);
 
-  function handleClickNumber(event) {
+  function handleClickNumber() {
     event.preventDefault()
+    $visor.value += this.value
+  }
+
+  function handleClickCE(){
+    event.preventDefault()
+    $visor.value = 0
+  }
+
+  function handleClickOperations (){
+    event.preventDefault()
+    var operations = ['+', '-','*','/']
+    if(isLastItemAnOperation(operations)){
+      $visor.value = $visor.value.slice(0, -1)
+    }
     $visor.value += this.value
   }
 })(window, document);
