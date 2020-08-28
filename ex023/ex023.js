@@ -28,32 +28,50 @@ input;
   var $buttonsNumber = doc.querySelectorAll('[data-js="buttonNumber"]');
   var $buttonCe = doc.querySelector('[data-js="button-CE"]');
   var $operationsButtons = doc.querySelectorAll('[data-js="buttonOperations"]')
+  var $buttonEqual = doc.querySelector('[data-js="button-equal"]')
 
   Array.prototype.forEach.call($buttonsNumber, function (button) {
     button.addEventListener("click", handleClickNumber, false);
   });
-  Array.prototype.forEach.call($operationsButtons, function(button){
+  Array.prototype.forEach.call($operationsButtons, function (button) {
     button.addEventListener("click", handleClickOperations, false);
   })
-  
+
   $buttonCe.addEventListener("click", handleClickCE, false);
+  $buttonEqual.addEventListener('click', handleClickEqual, false);
 
   function handleClickNumber() {
     event.preventDefault()
     $visor.value += this.value
   }
 
-  function handleClickCE(){
+  function handleClickCE() {
     event.preventDefault()
     $visor.value = 0
   }
-
-  function handleClickOperations (){
-    event.preventDefault()
-    var operations = ['+', '-','*','/']
-    if(isLastItemAnOperation(operations)){
+  function removeLastItemIdIsOperator() {
+    if (isLastItemAnOperation()) {
       $visor.value = $visor.value.slice(0, -1)
     }
+  }
+
+  function handleClickOperations() {
+    event.preventDefault()
+    removeLastItemIdIsOperator()
     $visor.value += this.value
   }
+ 
+  function isLastItemAnOperation(operations) {
+    var operations = ['+', '-', '*', '/']
+    var lastItem = $visor.value.split('').pop()
+    return operations.some(function (operator) {
+      return operator === lastItem
+    })
+  }
+
+  function handleClickEqual() {
+    event.preventDefault()
+    removeLastItemIdIsOperator()
+  }
+
 })(window, document);
