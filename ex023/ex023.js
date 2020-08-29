@@ -27,51 +27,67 @@ input;
   var $visor = doc.querySelector('[data-js="visor"]');
   var $buttonsNumber = doc.querySelectorAll('[data-js="buttonNumber"]');
   var $buttonCe = doc.querySelector('[data-js="button-CE"]');
-  var $operationsButtons = doc.querySelectorAll('[data-js="buttonOperations"]')
-  var $buttonEqual = doc.querySelector('[data-js="button-equal"]')
+  var $operationsButtons = doc.querySelectorAll('[data-js="buttonOperations"]');
+  var $buttonEqual = doc.querySelector('[data-js="button-equal"]');
 
   Array.prototype.forEach.call($buttonsNumber, function (button) {
     button.addEventListener("click", handleClickNumber, false);
   });
   Array.prototype.forEach.call($operationsButtons, function (button) {
     button.addEventListener("click", handleClickOperations, false);
-  })
+  });
 
   $buttonCe.addEventListener("click", handleClickCE, false);
-  $buttonEqual.addEventListener('click', handleClickEqual, false);
+  $buttonEqual.addEventListener("click", handleClickEqual, false);
 
   function handleClickNumber() {
-    event.preventDefault()
-    $visor.value += this.value
+    event.preventDefault();
+    $visor.value += this.value;
   }
 
   function handleClickCE() {
-    event.preventDefault()
-    $visor.value = 0
+    event.preventDefault();
+    $visor.value = 0;
   }
   function removeLastItemIdIsOperator() {
+    //remove ultimo item digitado quando o mesmo é um operador
     if (isLastItemAnOperation()) {
-      $visor.value = $visor.value.slice(0, -1)
+      $visor.value = $visor.value.slice(0, -1);
     }
   }
 
   function handleClickOperations() {
-    event.preventDefault()
-    removeLastItemIdIsOperator()
-    $visor.value += this.value
+    event.preventDefault();
+    removeLastItemIdIsOperator();
+    $visor.value += this.value;
   }
- 
+
   function isLastItemAnOperation(operations) {
-    var operations = ['+', '-', '*', '/']
-    var lastItem = $visor.value.split('').pop()
+    var operations = ["+", "-", "*", "/"];
+    var lastItem = $visor.value.split("").pop();
     return operations.some(function (operator) {
-      return operator === lastItem
-    })
+      return operator === lastItem;
+    });
   }
 
   function handleClickEqual() {
-    event.preventDefault()
-    removeLastItemIdIsOperator()
+    event.preventDefault();
+    removeLastItemIdIsOperator();
+    var allValues = $visor.value.match(/\d+[+*-/]?/g);
+    $visor.value = allValues.reduce(function (accumulate, actual) {
+      var firstValue = accumulate.slice(0, -1);
+      var operator = accumulate.split("").pop();
+      var lastValue = actual;
+      switch (operator) {
+        case "+":
+          return Number(firstValue) + Number(lastValue);
+        case "-":
+          return Number(firstValue) - Number(lastValue);
+        case "*":
+          return Number(firstValue) * Number(lastValue);
+        case "/":
+          return Number(firstValue) / Number(lastValue);
+      }
+    });
   }
-
 })(window, document);
