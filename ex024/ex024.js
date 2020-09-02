@@ -69,18 +69,28 @@ input;
   }
 
   function isLastItemAnOperation(number) {
-    var operations = ["+", "-", "*", "/"];
+    var operations = getOperations();
     var lastItem = number.split("").pop();
     return operations.some(function (operator) {
       return operator === lastItem;
     });
   }
 
+  function getOperations() {
+    return Array.prototype.map.call($operationsButtons, function (button) {
+      return button.value;
+    });
+  }
+
   function handleClickEqual() {
     event.preventDefault();
     $visor.value = removeLastItemIdIsOperator($visor.value);
-    var allValues = $visor.value.match(/\d+[+*-/]?/g);
+    var allValues = $visor.value.match(getRegexOperation());
     $visor.value = allValues.reduce(calculateAllValues);
+  }
+
+  function getRegexOperation(){
+    return new RegExp('\\d+[' + getOperations().join('') + ']?','g');
   }
 
   function calculateAllValues(accumulate, actual) {
@@ -90,7 +100,7 @@ input;
     var lastoperator = isLastItemAnOperation(actual)
       ? actual.split("").pop()
       : "";
-    return doOperator(operator, firstValue, lastValue)+ lastoperator;
+    return doOperator(operator, firstValue, lastValue) + lastoperator;
   }
 
   function doOperator(operator, firstValue, lastValue) {
