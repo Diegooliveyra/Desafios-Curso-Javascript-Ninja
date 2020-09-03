@@ -85,12 +85,8 @@ input;
   function handleClickEqual() {
     event.preventDefault();
     $visor.value = removeLastItemIdIsOperator($visor.value);
-    var allValues = $visor.value.match(getRegexOperation());
+    var allValues = $visor.value.match(/\d+[+-/*]?/g);
     $visor.value = allValues.reduce(calculateAllValues);
-  }
-
-  function getRegexOperation(){
-    return new RegExp('\\d+[' + getOperations().join('') + ']?','g');
   }
 
   function calculateAllValues(accumulate, actual) {
