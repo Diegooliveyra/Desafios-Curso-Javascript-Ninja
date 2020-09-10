@@ -22,16 +22,19 @@ Só passe para o próximo problema quando tiver resolvido o anterior :)
 // ?
 
 function DOM(elements) {
-  this.element = getDOMElements(elements);
+  this.element = document.querySelectorAll(elements)
 }
 
-dom;prototype.getDOMElements = function getDOMElements(elements){
-  return document.querySelectorAll(elements)
-}
 
-DOM.prototype.on = function() {}
-DOM.prototype.off = function() {}
-DOM.prototype.get = function() {}
+DOM.prototype.on = function on(eventType, callback) {
+
+}
+DOM.prototype.off = function off(eventType, callback) {
+
+}
+DOM.prototype.get = function get() {
+  return this.element;
+}
 
 
 var $a = new DOM('[data-js="link"]');
