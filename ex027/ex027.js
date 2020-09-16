@@ -1,6 +1,6 @@
-(function(){
-    'use stricts'
-/*
+(function () {
+  "use stricts";
+  /*
 Aproveitando a lib DOM que fizemos na semana anterior, crie agora para ela
 métodos semelhantes aos que existem no array, mas que sirvam para os
 elementos do DOM selecionados.
@@ -18,7 +18,7 @@ Crie os seguintes métodos para verificação de tipo:
 - isArray, isObject, isFunction, isNumber, isString, isBoolean, isNull.
 O método isNull deve retornar `true` se o valor for null ou undefined.
 */
-function DOM(elements) {
+  function DOM(elements) {
     this.element = document.querySelectorAll(elements);
   }
 
@@ -36,14 +36,62 @@ function DOM(elements) {
     return this.element;
   };
 
- DOM.prototype.forEach = function forEach(){
-     return Array.prototype.forEach.apply(this.element, arguments)
- }
+  DOM.prototype.forEach = function forEach() {
+    return Array.prototype.forEach.apply(this.element, arguments);
+  };
 
- var $a = new DOM('[data-js="link"]')
-$a.forEach(function(item){
-    console.log(item.firstChild.nodeValue)
-})
+  DOM.prototype.map = function map() {
+    return Array.prototype.map.apply(this.element, arguments);
+  };
 
+  DOM.prototype.filter = function filter() {
+    return Array.prototype.filter.apply(this.element, arguments);
+  };
 
-})()
+  DOM.prototype.reduce = function reduce() {
+    return Array.prototype.reduce.apply(this.element, arguments);
+  };
+
+  DOM.prototype.reduceRight = function reduceRight() {
+    return Array.prototype.reduceRight.apply(this.element, arguments);
+  };
+
+  DOM.prototype.every = function every() {
+    return Array.prototype.every.apply(this.element, arguments);
+  };
+
+  DOM.prototype.some = function some() {
+    return Array.prototype.some.apply(this.element, arguments);
+  };
+
+  DOM.prototype.isArray = function isArray(parametro) {
+    return Object.prototype.toString.call(parametro) === "[object Array]";
+  };
+
+  DOM.prototype.isObject = function isObject(parametro) {
+    return Object.prototype.toString.call(parametro) === "[object Object]";
+  };
+
+  DOM.prototype.isFunction = function isFunction(parametro) {
+    return Object.prototype.toString.call(parametro) === "[object Function]";
+  };
+
+  DOM.prototype.isNumber = function isNumber(parametro) {
+    return Object.prototype.toString.call(parametro) === "[object Number]";
+  };
+
+  DOM.prototype.isString = function isString(parametro) {
+    return Object.prototype.toString.call(parametro) === "[object String]";
+  };
+
+  DOM.prototype.isBoolean = function isBoolean(parametro) {
+    return Object.prototype.toString.call(parametro) === "[object Bolean]";
+  };
+
+  DOM.prototype.isNull = function isNull(parametro) {
+    return (
+      Object.prototype.toString.call(parametro) === "[object Null]" ||
+      Object.prototype.toString.call(parametro) === "[object Undefined]"
+    );
+  };
+})();
