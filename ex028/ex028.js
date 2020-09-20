@@ -9,6 +9,7 @@
   preenchidas com os dados da requisição feita no JS.
   - Crie uma área que receberá mensagens com o status da requisição:
   "Carregando, sucesso ou erro."
+
   No JS:
   - O CEP pode ser entrado pelo usuário com qualquer tipo de caractere, mas
   deve ser limpo e enviado somente os números para a requisição abaixo;
@@ -27,24 +28,94 @@
   adicionar as informações em tela.
   */
 
+  function DOM(elements) {
+    this.element = document.querySelectorAll(elements);
+  }
+
+  DOM.prototype.on = function on(eventType, callback) {
+    Array.prototype.forEach.call(this.element, function (element) {
+      element.addEventListener(eventType, callback, false);
+    });
+  };
+  DOM.prototype.off = function off(eventType, callback) {
+    Array.prototype.forEach.call(this.element, function (element) {
+      element.removeEventListener(eventType, callback, false);
+    });
+  };
+  DOM.prototype.get = function get() {
+    return this.element;
+  };
+
+  DOM.prototype.forEach = function forEach() {
+    return Array.prototype.forEach.apply(this.element, arguments);
+  };
+
+  DOM.prototype.map = function map() {
+    return Array.prototype.map.apply(this.element, arguments);
+  };
+
+  DOM.prototype.filter = function filter() {
+    return Array.prototype.filter.apply(this.element, arguments);
+  };
+
+  DOM.prototype.reduce = function reduce() {
+    return Array.prototype.reduce.apply(this.element, arguments);
+  };
+
+  DOM.prototype.reduceRight = function reduceRight() {
+    return Array.prototype.reduceRight.apply(this.element, arguments);
+  };
+
+  DOM.prototype.every = function every() {
+    return Array.prototype.every.apply(this.element, arguments);
+  };
+
+  DOM.prototype.some = function some() {
+    return Array.prototype.some.apply(this.element, arguments);
+  };
+
+  DOM.prototype.isArray = function isArray(parametro) {
+    return Object.prototype.toString.call(parametro) === "[object Array]";
+  };
+
+  DOM.prototype.isObject = function isObject(parametro) {
+    return Object.prototype.toString.call(parametro) === "[object Object]";
+  };
+
+  DOM.prototype.isFunction = function isFunction(parametro) {
+    return Object.prototype.toString.call(parametro) === "[object Function]";
+  };
+
+  DOM.prototype.isNumber = function isNumber(parametro) {
+    return Object.prototype.toString.call(parametro) === "[object Number]";
+  };
+
+  DOM.prototype.isString = function isString(parametro) {
+    return Object.prototype.toString.call(parametro) === "[object String]";
+  };
+
+  DOM.prototype.isBoolean = function isBoolean(parametro) {
+    return Object.prototype.toString.call(parametro) === "[object Bolean]";
+  };
+
+  DOM.prototype.isNull = function isNull(parametro) {
+    return (
+      Object.prototype.toString.call(parametro) === "[object Null]" ||
+      Object.prototype.toString.call(parametro) === "[object Undefined]"
+    );
+  };
+
+  
+
+  var cep = document.querySelector("#cep");
+  console.log(cep);
+
   var ajax = new XMLHttpRequest();
-  ajax.open("GET", "data.json");
+  ajax.open("GET", "https://viacep.com.br/ws/08775000/json/");
   ajax.send();
 
-  console.log("Carregando ...");
-
-  ajax.addEventListener(
-    "readystatechange",
-    function () {
-      if (isRequestOk()) {
-        var data = JSON.parse(ajax.responseText);
-        console.log("Requisição Ok ", data.message);
-      }
-    },
-    false
-  );
-
-  function isRequestOk() {
-    return ajax.readyState === 4 && ajax.status === 200;
-  }
+  ajax.onload = function () {
+    var data = JSON.parse(this.response);
+    console.log(data.logradouro);
+  };
 })();
