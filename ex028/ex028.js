@@ -105,10 +105,17 @@
     );
   };
 
-  
+  var $formCep = new DOM ('[data-js="form-cep"]')
+
+  $formCep.on('submit', handleSubmitFormCep)
+
+  function handleSubmitFormCep(event) {
+    event.preventDefalut();
+    console,log(  'ola')
+  }
 
   var cep = document.querySelector("#cep");
-  console.log(cep);
+  console.log($formCep);
 
   var ajax = new XMLHttpRequest();
   ajax.open("GET", "https://viacep.com.br/ws/08775000/json/");
@@ -118,4 +125,5 @@
     var data = JSON.parse(this.response);
     console.log(data.logradouro);
   };
+
 })();
