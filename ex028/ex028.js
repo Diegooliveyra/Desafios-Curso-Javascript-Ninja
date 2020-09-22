@@ -105,25 +105,32 @@
     );
   };
 
-  var $formCep = new DOM ('[data-js="form-cep"]')
+  var $formCep = new DOM('[data-js="form-cep"]');
+  var $inputCep = new DOM('[data-js="input-cep"]')
+  var ajax = new XMLHttpRequest();
 
-  $formCep.on('submit', handleSubmitFormCep)
+  $formCep.on("submit", handleSubmitFormCep);
 
   function handleSubmitFormCep(event) {
-    event.preventDefalut();
-    console,log(  'ola')
+    event.preventDefault();
+    var url = "https://viacep.com.br/ws/[CEP]/json/".replace(
+      '[CEP]',
+      $inputCep.get()[0].value
+    )
+    console.log(url)
+    ajax.open("GET", url)
+    ajax.send();
+    ajax.addEventListener("readystatechange", handleReadyStateChange);
   }
 
-  var cep = document.querySelector("#cep");
-  console.log($formCep);
-
-  var ajax = new XMLHttpRequest();
-  ajax.open("GET", "https://viacep.com.br/ws/08775000/json/");
-  ajax.send();
-
-  ajax.onload = function () {
-    var data = JSON.parse(this.response);
-    console.log(data.logradouro);
-  };
+  function handleReadyStateChange() {
+    if(ajax.readyState === 4 && ajax.status === 200){
+        ajax.onload = function () {
+        var data = JSON.parse(this.response);
+        console.log(data);
+    } 
+      
+    };
+  }
 
 })();
