@@ -107,6 +107,12 @@
 
   var $formCep = new DOM('[data-js="form-cep"]');
   var $inputCep = new DOM('[data-js="input-cep"]');
+  var $logradouro = new DOM('[data-js="logradouro"]');
+  var $bairro = new DOM('[data-js="bairro"]');
+  var $estado = new DOM('[data-js="estado"]');
+  var $cidade = new DOM('[data-js="cidade"]');
+  var $cep = new DOM('[data-js="cep"]');
+  var $status = new DOM('[data-js="status"]');
   var ajax = new XMLHttpRequest();
 
   $formCep.on("submit", handleSubmitFormCep);
@@ -116,18 +122,23 @@
     var url = getUrl();
     ajax.open("GET", url);
     ajax.send();
+    getMessage("loading");
     ajax.addEventListener("readystatechange", handleReadyStateChange);
   }
 
   function getUrl() {
-    return "https://viacep.com.br/ws/[CEP]/json/".replace(
-      "[CEP]",
-      $inputCep.get()[0].value.replace(/\D/g, "")
-    );
+    return "https://viacep.com.br/ws/[CEP]/json/".replace("[CEP]", clearCep());
+  }
+
+  function clearCep() {
+    return $inputCep.get()[0].value.replace(/\D/g, "");
   }
 
   function handleReadyStateChange() {
-    if (isRequestOk()) fillCepFields();
+    if (isRequestOk()) {
+      fillCepFields();
+      getMessage("ok");
+    }
   }
 
   function isRequestOk() {
@@ -136,12 +147,7 @@
 
   function fillCepFields() {
     var data = parseData();
-    if (!data) return console.log("error");
-    var $logradouro = new DOM('[data-js="logradouro"]');
-    var $bairro = new DOM('[data-js="bairro"]');
-    var $estado = new DOM('[data-js="estado"]');
-    var $cidade = new DOM('[data-js="cidade"]');
-    var $cep = new DOM('[data-js="cep"]');
+    if (!data) getMessage("error");
 
     $logradouro.get()[0].textContent = data.logradouro;
     $bairro.get()[0].textContent = data.bairro;
@@ -161,11 +167,13 @@
   }
 
   function getMessage(type) {
-    return {
-      loading: 'Buscando informações para o CEP',
-      ok: 'Endereço referente ao CEP [CEP]:',
-      error: 'Não encontramos o endereço para o CEP [CEP].'
-    }[type]
-  }
+    var cep = clearCep()
+    var messages = {
+      loading: "Buscando informações para o CEP: [CEP]".replace('[CEP]',clearCep),
+      ok: "Endereço referente ao CEP: [CEP]".replace('[CEP]',clearCep),
+      error: "Não encontramos o endereço para o CEP: [CEP].".replace('[CEP]',clearCep),
+    };
 
+    $status.get()[0].textContent = messages[type];
+  }
 })();
