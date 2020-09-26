@@ -4,12 +4,70 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BrittsCar</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        font-family: sans-serif;
+      }
+      header {
+        max-width: 900px;
+        margin: 0 auto;
+        text-align: center;
+      }
+      form {
+        max-width: 900px;
+        margin: 60px auto;
+      }
+      ul {
+        list-style: none;
+        margin-left: -40px;
+      }
+      li {
+        list-style: none;
+        margin-bottom: 10px;
+        display: flex;
+        flex-direction: column;
+      }
+      label {
+        margin-bottom: 5px;
+        font-size: 18px;
+      }
+
+      li button {
+        padding: 10px 30px;
+        cursor: pointer;
+        font-size: 18px;
+        color: white;
+        background-color: blueviolet;
+        border: none;
+      }
+      li input {
+        padding: 10px;
+      }
+
+      table {
+        width: 100%;
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      tr {
+        display: flex;
+        justify-content: center;
+      }
+
+      th {
+        padding: 10px;
+        border: 1px solid gray;
+        flex: 1;
+      }
+    </style>
   </head>
   <body>
     <header>
       <h1>
-        <span></span> -
-        <span></span>
+        <span data-js="company-name"></span> -
+        <span data-js="company-phone"></span>
       </h1>
     </header>
 
@@ -17,7 +75,7 @@
       <ul>
         <li>
           <label for="">Imagem do Carro</label>
-          <input type="url" />
+          <input type="url" placeholder="Url" />
         </li>
         <li>
           <label for="">Marca / Modelo</label>
@@ -44,14 +102,17 @@
     <table>
       <thead>
         <tr>
-          <th>Imagen do carro</th>
-          <th>Marca / Modelo</th>
-          <th>Ano</th>
-          <th>Placa</th>
-          <th>Cor</th>
+          <th>Imagen do carro:</th>
+          <th>Marca / Modelo:</th>
+          <th>Ano:</th>
+          <th>Placa:</th>
+          <th>Cor:</th>
         </tr>
       </thead>
       <tbody></tbody>
     </table>
+
+    <script src="dom.js"></script>
+    <script src="ex029.js"></script>
   </body>
 </html>
