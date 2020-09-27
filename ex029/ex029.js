@@ -1,4 +1,4 @@
-(function () {
+(function ($) {
   "use strict";
 
   /*
@@ -35,6 +35,13 @@
     return {
       init: function init() {
         this.companyInfo();
+        this.initEvents()
+      },
+      initEvents: function initEvents(){
+        $('[data-js="form-register"]').on('submit', this.handleSubmit)
+      },
+      handleSubmit: function handleSubmit(e){
+        e.preventDefault()
       },
 
       companyInfo: function companyInfo() {
@@ -47,10 +54,10 @@
         if (!app().isReady.call(this)) return;
 
         var data = JSON.parse(this.responseText);
-        var $companyName = new DOM('[data-js="company-name"]');
-        var $companyPhone = new DOM('[data-js="company-phone"]');
-        $companyName.get()[0].textContent = data.name;
-        $companyPhone.get()[0].textContent = data.phone;
+        var $companyName = $('[data-js="company-name"]').get();
+        var $companyPhone = $('[data-js="company-phone"]').get();
+        $companyName.textContent = data.name;
+        $companyPhone.textContent = data.phone;
       },
       isReady: function isReady() {
         return this.readyState === 4 && this.status === 200;
@@ -59,4 +66,4 @@
   }
 
   app().init();
-})();
+})(window.DOM);
